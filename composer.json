@@ -1,0 +1,71 @@
+{
+    "name": "w-vision/pimcore-skeleton",
+    "type": "project",
+    "description": "Content & Product Management Framework (CMS/PIM/E-Commerce)",
+    "homepage": "https://www.w-vision.ch/",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "w-vision AG",
+            "email": "support@w-vision.ch",
+            "homepage": "https://www.w-vision.ch/",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.1",
+        "pimcore/pimcore": "5.5.*",
+        "w-vision/pimcore-deployer": "~1.0",
+        "w-vision/wvision": "^2.0",
+        "dachcom-digital/emailizr" : "~1.0.0"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "": ["src/"],
+            "Pimcore\\Model\\DataObject\\": "var/classes/DataObject",
+            "Pimcore\\Model\\Object\\": "var/classes/Object",
+            "Website\\": "legacy/website/lib"
+        },
+        "classmap": [
+            "app/AppKernel.php"
+        ]
+    },
+    "scripts": {
+        "post-create-project-cmd": "Pimcore\\Composer::postCreateProject",
+        "post-install-cmd": [
+            "Pimcore\\Composer::postInstall",
+            "@symfony-scripts"
+        ],
+        "post-update-cmd": [
+            "Pimcore\\Composer::postUpdate",
+            "@symfony-scripts",
+            "Pimcore\\Composer::executeMigrationsUp"
+        ],
+        "pre-package-update": [
+            "Pimcore\\Composer::prePackageUpdate"
+        ],
+        "symfony-scripts": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
+        "symfony-assets-install": "relative"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
