@@ -2,14 +2,14 @@ version: '2.0'
 services:
   redis:
     image: redis:alpine
-    container_name: gewerbe-luzern-redis
+    container_name: manuelkleinert-redis
 
   db:
     image: mariadb:10.1
-    container_name: gewerbe-luzern-mariadb
+    container_name: manuelkleinert-mariadb
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --innodb-file-format=Barracuda, --innodb_large_prefix=1]
     volumes:
-      - gewerbe-luzern-database:/var/lib/mysql
+      - manuelkleinert-database:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=ROOT
       - MYSQL_DATABASE=pimcore
@@ -18,13 +18,13 @@ services:
 
 #  node:
 #    build: .docker/node
-#    container_name: gewerbe-luzern-node
+#    container_name: manuelkleinert-node
 #    volumes:
 #      - .:/var/www/html:cached
 
   adminer:
     image: adminer
-    container_name: gewerbe-luzern-adminer
+    container_name: manuelkleinert-adminer
     restart: always
     volumes:
       - .docker/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/uploads.ini
@@ -32,9 +32,9 @@ services:
       - 2001:8080
 
   php:
-    build: ./.docker/PHP7.1-apache
+    build: ./.docker/PHP7.2-apache
 #    image: dpfaffenbauer/pimcore-docker-php-fpm:PHP7-apache
-    container_name: gewerbe-luzern-php
+    container_name: manuelkleinert-php
     volumes:
       - ~/.composer:/root/composer
       - .:/var/www/html:cached
@@ -46,4 +46,4 @@ services:
      - redis:redis
 
 volumes:
-  gewerbe-luzern-database:
+  manuelkleinert-database:

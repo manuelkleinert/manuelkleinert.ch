@@ -1,4 +1,4 @@
-FROM php:7.1-apache-stretch
+FROM php:7.0-apache-stretch
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
