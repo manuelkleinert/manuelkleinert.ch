@@ -7,6 +7,6 @@ if [ ! -f /var/www/html/package.json ]; then
     exit 1;
 fi
 
-npm run install-workflow
-npm run custom-icons
-npm run dev-server
+yarn run install-workflow
+yarn run custom-icons
+yarn run dev-server

@@ -1,0 +1,90 @@
+// Base
+@mixin hook-base-body() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// Buttom
+@mixin hook-button() {
+  text-transform: none;
+  font-weight: bold;
+  padding: 5px $button-padding-horizontal;
+  border-radius: 3px;
+}
+
+// Card
+@mixin hook-card-default() {
+  box-shadow: none;
+  border: 1px solid $color-border;
+  border-radius: 2px;
+}
+
+@mixin hook-card-default-footer() {
+  border: none;
+}
+
+// Form
+@mixin hook-form-label() {
+  font-size: $global-small-font-size;
+  font-weight: bold;
+}
+
+// Header
+@mixin hook-base-heading() {
+  margin-bottom: 25px;
+}
+
+@mixin hook-base-h1() {
+  color: $color-primary;
+}
+
+@mixin hook-base-h2() {
+  color: $color-primary;
+}
+
+@mixin hook-base-h4() {
+  color: $color-primary;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+// Nav-Bar
+@mixin hook-navbar-container() {
+  box-shadow: 0 3px 6px $color-mute;
+}
+
+@mixin hook-navbar-nav-item() {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@mixin hook-nav-primary-item() {
+  font-weight: bold;
+}
+
+@mixin hook-navbar-dropdown-nav-item-active() {
+  font-weight: bold;
+}
+
+// Progress
+@mixin hook-progress() {
+  border-radius: 0;
+}
+
+// Search
+@mixin hook-search-input() {
+  padding: 15px;
+}
+
+// Table
+@mixin hook-table() {
+  font-size: $global-small-font-size;
+}
+
+@mixin hook-table-header-cell() {
+  padding: $table-cell-padding-vertical $table-cell-padding-horizontal;
+  text-transform: none;
+  font-weight: bold;
+  color: $color-black;
+}
