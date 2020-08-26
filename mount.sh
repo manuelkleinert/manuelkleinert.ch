@@ -11,5 +11,3 @@ docker-compose up -d
 chmod 600 ./.deployer/id_deployer
 yarn install
 yarn dev
-
-mysql -u root -p -e "CREATE DATABASE pimcore charset=utf8mb4;"

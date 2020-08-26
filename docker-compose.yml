@@ -3,13 +3,20 @@ services:
     redis:
         image: redis:alpine
         container_name: manuelkleinert-redis
+        network_mode: bridge
 
     db:
-        image: mysql:5.7.31
+        image: mysql:5.7
+        restart: always
+        ports:
+            - "3306:3306"
         container_name: manuelkleinert-mysql
-        command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_general_ci, --innodb-file-format=Barracuda, --innodb-large-prefix=1, --innodb-file-per-table=1]
+        command: --init-file /data/application/init.sql
         volumes:
+            - ./docker/mysql_init.sql:/data/application/init.sql
             - manuelkleinert-database:/var/lib/mysql
+            - .:/var/www/html
+        network_mode: bridge
         environment:
             - MYSQL_ROOT_PASSWORD=ROOT
             - MYSQL_DATABASE=pimcore
@@ -26,6 +33,7 @@ services:
             - "2001:8080"
         links:
             - db:db
+        network_mode: bridge
 
     php:
         image: pimcore/pimcore:PHP7.4-apache
@@ -39,6 +47,7 @@ services:
         links:
             - db:db
             - redis:redis
+        network_mode: bridge
 
     php-debug:
         image: pimcore/pimcore:PHP7.4-apache-debug
@@ -52,6 +61,7 @@ services:
         links:
             - db:db
             - redis:redis
+        network_mode: bridge
 
 volumes:
     manuelkleinert-database:
